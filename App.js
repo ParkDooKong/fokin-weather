@@ -13,8 +13,8 @@ export default class extends React.Component {
   };
   getWeather = async(latitude, longitude) => {   // Weather API Call Return DATA 
     const {data: {main: {temp, temp_max, temp_min}, name, weather: [{id, icon}] }} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`);
-    const exid = (id === 800 ? 1 : id / 100);
-    
+    const exid = (id === 800 ? 1 : parseInt(id / 100));
+
     this.setState({isLoading:false, temp:Math.round(temp), temp_max:Math.round(temp_max), temp_min:Math.round(temp_min), name, id:exid, icon});      
   };
   gioLocation = async() => { // Location API Call Return latitude, longitute
